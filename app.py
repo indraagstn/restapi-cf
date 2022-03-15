@@ -50,9 +50,12 @@ class RecipeCategories(Resource):
         payload = {"success":True,"message":"Success","data":json_data}
         return payload
 
-
+class Home(Resource):
+    def get(self):
+        return "home - IAK"
 
 api.add_resource(RecipeCategories, '/recipe-categories')
+api.add_resource(Home, '/')
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug=True, host='0.0.0.0', port=3000)
