@@ -1,5 +1,6 @@
 
-FROM mysql:latest
+# FROM mysql:latest
+FROM python:3.8
 
 #change to bash
 SHELL ["/bin/bash", "-c"]
@@ -7,22 +8,22 @@ SHELL ["/bin/bash", "-c"]
 #install dependencies
 RUN apt-get update && apt-get install -y \
 #     nano \
-    python3-dev \
-    python3-pip \
+#     python3-dev \
+#     python3-pip \
     default-libmysqlclient-dev \
     build-essential
 
 #env var
-ENV MYSQL_HOST "0.0.0.0"
+ENV MYSQL_HOST "127.0.0.1"
 ENV MYSQL_PORT 3306
-ENV MYSQL_USER "admin"
-ENV MYSQL_PASSWORD "admin"
+ENV MYSQL_USER "root"
+ENV MYSQL_PASSWORD "root"
 ENV MYSQL_DBNAME "cf_test"
 ENV MYSQL_DATABASE $MYSQL_DBNAME
 
 #db config, import local db
 # EXPOSE 3306
-ADD cf_test_db.sql /docker-entrypoint-initdb.d/
+# ADD cf_test_db.sql /docker-entrypoint-initdb.d/
 
 
 ##================================================
@@ -38,9 +39,9 @@ RUN pip3 install -r requirements.txt
 ADD . /app/
 
 #open port
-EXPOSE 3000
+EXPOSE 3030
 
 #RUN!
 ENTRYPOINT [ "python3" ]
 CMD ["app.py"]
-# CMD gunicorn -w 4 -b 0.0.0.0:3000 wsgi:app
+# CMD gunicorn -w 4 -b 0.0.0.0:3030 wsgi:app

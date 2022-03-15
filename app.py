@@ -52,10 +52,10 @@ class RecipeCategories(Resource):
 
 class Home(Resource):
     def get(self):
-        return "home - IAK"
+        return {"success":True,"message":"Success"}
 
 api.add_resource(RecipeCategories, '/recipe-categories')
 api.add_resource(Home, '/')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=3000)
+    app.run(debug=True, host='0.0.0.0', port=3030)
