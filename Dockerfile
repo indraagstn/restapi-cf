@@ -43,5 +43,5 @@ EXPOSE 3030
 
 #RUN!
 ENTRYPOINT [ "python3" ]
-CMD ["app.py"]
+CMD ["app2.py"]
 # CMD gunicorn -w 4 -b 0.0.0.0:3030 wsgi:app
